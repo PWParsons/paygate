@@ -3,11 +3,15 @@
 namespace PWParsons\PayGate;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
+use PWParsons\PayGate\Foundation\Objects\JSONObject;
 
 class PayGate
 {
     private $config;
     private $data;
+    public $resource;
 
     private $error_codes = [
         'CNTRY_INVALID'         => 'Invalid Country',
@@ -39,26 +43,24 @@ class PayGate
 
     public function __construct(array $config)
     {
-        $this->config = $config;
-
-        $this->validateConfig();
-        $this->setDefaults();
+        $this->config = $this->validateConfig($config);
+        $this->setDefaultData();
     }
 
-    public function __call($name, $args)
+    private function validateConfig(array $config)
     {
-        if (substr($name, 0, 4) == 'with') {
-            $arr = preg_split('/(?=[A-Z])/', substr($name, 4));
-            $arr = array_filter($arr);
-            $name = strtoupper(implode('_', $arr));
-
-            $this->data[$name] = $name == 'AMOUNT' ? bcmul($args[0], 100) : $args[0];
+        foreach ($config as $key => $value) {
+            if ($key == 'id' || $key == 'secret' || $key == 'return_url') {
+                if (empty($value)) {
+                    throw new \InvalidArgumentException('Please check you paygate configuration.');
+                }
+            }
         }
 
-        return $this;
+        return $config;
     }
 
-    private function setDefaults()
+    private function setDefaultData()
     {
         $this->data = [
             'PAYGATE_ID'        => $this->config['id'],
@@ -74,38 +76,40 @@ class PayGate
         ];
     }
 
-    private function createChecksum()
+    private function createRequest($body = [])
     {
-        $checksum = md5(implode('', $this->data) . $this->config['secret']);
-        $this->data['CHECKSUM'] = $checksum;
-    }
+        $httpRequest = new Client();
 
-    private function validateConfig()
-    {
-        foreach ($this->config as $key => $value) {
-            if ($key == 'id' || $key == 'secret' || $key == 'return_url') {
-                if (empty($value)) {
-                    throw new \InvalidArgumentException('Please check you paygate configuration.');
-                }
-            }
-        }
-    }
+        try {
+            $httpResponse = $httpRequest->post('https://secure.paygate.co.za/payweb3/initiate.trans', [
+                'form_params' => $body
+            ]);
 
-    public function init()
-    {
-        $this->createChecksum();
-
-        $client = new Client;
-        $result = $client->post('https://secure.paygate.co.za/payweb3/initiate.trans', [
-            'form_params' => $this->data
-        ]);
-
-        parse_str($result->getBody()->getContents(), $output);
-
-        if (array_key_exists('ERROR', $output)) {
-            return $this->error_codes[$output['ERROR']];
+            parse_str($httpResponse->getBody()->getContents(), $httpResponse);
+        } catch (ClientException $e) {
+            $httpResponse = $e->getResponse()->getBody()->getContents();
+        } catch (RequestException $e) {
+            $httpResponse = $e->getResponse()->getBody()->getContents();
         }
 
-        return $output;
+        return $httpResponse;
+    }
+
+    public function create(array $data)
+    {
+        $data['CHECKSUM'] = md5(implode('', $data) . $this->config['secret']);
+
+        $response = $this->createRequest($data);
+
+        $this->resource = new JSONObject($response, $this);
+
+        return $this->resource;
+    }
+
+    public function instantiate()
+    {
+        $this->resource = new JSONObject($this->data, $this);
+        
+        return $this->resource;
     }
 }

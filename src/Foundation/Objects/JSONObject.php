@@ -32,9 +32,14 @@ class JSONObject
         return $this;
     }
 
+    public function gotExpectedResult()
+    {
+        return (isset($this->resource['meta']) && substr($this->resource['meta']['code'], 0, 1) == '2');
+    }
+
     public function succeeds()
     {
-        return $this->success;
+        return $this->gotExpectedResult();
     }
 
     public function fails()

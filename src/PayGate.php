@@ -71,9 +71,16 @@ class PayGate
             'NOTIFY_URL'        => $this->config['notify_url'],
             'TRANSACTION_DATE'  => now()->format('Y-m-d H:i:s'),
             'LOCALE'            => $this->config['locale'],
-            'COUNTRY'           => $this->config['country'],
+            // 'COUNTRY'           => $this->config['country'],
             'EMAIL'             => ''
         ];
+    }
+
+    public function instantiate()
+    {
+        $this->resource = new JSONObject($this->data, $this);
+        
+        return $this->resource;
     }
 
     private function createRequest($body = [])
@@ -101,15 +108,9 @@ class PayGate
 
         $response = $this->createRequest($data);
 
-        $this->resource = new JSONObject($response, $this);
+        // add reponse to the json objects meta
+        dd($this->resource);
 
-        return $this->resource;
-    }
-
-    public function instantiate()
-    {
-        $this->resource = new JSONObject($this->data, $this);
-        
         return $this->resource;
     }
 }

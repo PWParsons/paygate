@@ -11,11 +11,11 @@ Route::get('paygate', function () {
 
     dd($http);
 
-    if ($result->succeeds()) {
-        dd($result->all());
+    if ($http->succeeds()) {
+        dd($http->all());
     } else {
-        dump($result->getErrorCode());
-        dump($result->getErrorMessage());
+        dump($http->getErrorCode());
+        // dump($http->getErrorMessage());
         die();
     }
 });

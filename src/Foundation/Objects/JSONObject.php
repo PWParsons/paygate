@@ -20,7 +20,7 @@ class JSONObject
             $arr = array_filter($arr);
             $name = strtoupper(implode('_', $arr));
 
-            $this->resource[$name] = $name == 'AMOUNT' ? bcmul($args[0], 100) : $args[0];
+            $this->resource['data'][$name] = $name == 'AMOUNT' ? bcmul($args[0], 100) : $args[0];
         } else {
             if ($this->protocol) {
                 return $this->protocol->{$name}($this->resource);
@@ -32,14 +32,9 @@ class JSONObject
         return $this;
     }
 
-    public function gotExpectedResult()
-    {
-        return (isset($this->resource['meta']) && substr($this->resource['meta']['code'], 0, 1) == '2');
-    }
-
     public function succeeds()
     {
-        return $this->gotExpectedResult();
+        return (isset($this->resource['meta']) && !array_key_exists('ERROR', $this->resource['meta']));
     }
 
     public function fails()
@@ -54,7 +49,7 @@ class JSONObject
 
     public function getErrorCode()
     {
-        //
+        return $this->fails() && isset($this->resource['meta']['ERROR']) ? $this->resource['meta']['ERROR'] : '';
     }
 
     public function getErrorMessage()

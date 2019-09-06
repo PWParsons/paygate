@@ -15,6 +15,9 @@ class PayGateServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
+        // Views
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'PayGate');
+
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();

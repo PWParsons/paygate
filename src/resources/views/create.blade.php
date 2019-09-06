@@ -1,6 +1,6 @@
 <form action="{{ $url }}" method="POST" name="paygate-form">
-    <input type="" name="PAY_REQUEST_ID" value="{{ $request_id }}">
-    <input type="" name="CHECKSUM" value="{{ $checksum }}">
+    <input type="hidden" name="PAY_REQUEST_ID" value="{{ $request_id }}">
+    <input type="hidden" name="CHECKSUM" value="{{ $checksum }}">
 </form>
 
 <script>

@@ -85,21 +85,21 @@ class BaseProtocol
      */
     public function createRequest($body = [])
     {
-        $httpRequest = new Client();
+        $request = new Client();
 
         try {
-            $httpResponse = $httpRequest->post("{$this->api->baseUrl}{$this->endpoint}", [
+            $response = $request->post("{$this->api->baseUrl}{$this->endpoint}", [
                 'form_params' => $body
             ]);
 
-            parse_str($httpResponse->getBody()->getContents(), $httpResponse);
+            parse_str($response->getBody()->getContents(), $response);
         } catch (ClientException $e) {
-            $httpResponse = $e->getResponse()->getBody()->getContents();
+            $response = $e->getResponse()->getBody()->getContents();
         } catch (RequestException $e) {
-            $httpResponse = $e->getResponse()->getBody()->getContents();
+            $response = $e->getResponse()->getBody()->getContents();
         }
 
-        return $httpResponse;
+        return $response;
     }
 
     /**

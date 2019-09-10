@@ -51,7 +51,7 @@ class PayGate
     }
 
     /**
-     * Validates the required configuration settings
+     * Validates the required configuration settings.
      *
      * @return null
      *
@@ -69,7 +69,7 @@ class PayGate
     }
 
     /**
-     * Returns the json object
+     * Returns the json object.
      *
      * @return JSONObject
      */
@@ -79,7 +79,7 @@ class PayGate
     }
 
     /**
-     * Returns the view that redirects to PayGate
+     * Returns the view that redirects to PayGate.
      *
      * @return \Illuminate\View\View
      */

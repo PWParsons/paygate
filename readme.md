@@ -5,7 +5,9 @@
 [![StyleCI](https://styleci.io/repos/203629326/shield?branch=master)](https://styleci.io/repos/203629326)
 [![Total Downloads](https://img.shields.io/packagist/dt/pwparsons/paygate.svg?style=flat-square)](https://packagist.org/pwparsons/paygate)
 
-This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel 5. Here are some examples of what you can do with the package:
+This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel 5.
+
+The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3)
 
 ## Installation
 
@@ -93,7 +95,7 @@ An example of the query response can be found in the [documentation](http://docs
 
 ### Helpful Methods
 
-The `with` magic method that allows you to set a string after the word 'with' provided within the object it is being called on. This works in exactly the same way as the magic getter except it sets field values and returns the object so that you can chain setters, for example:
+The `with` magic method allows you to set a string after the word 'with' provided within the object it is being called on. This works in exactly the same way as the magic getter except it sets field values and returns the object so that you can chain setters, for example:
 
 ```php
 $object->withReference('pgtest_123456789')
@@ -113,7 +115,7 @@ Will result in the following:
 }
 ```
 
-The `get` magic method allow you to call any string after the word 'get' and it will return that value, for example:
+The `get` magic method allows you to call any string after the word 'get' and it will return that value, for example:
 
 ```json
 {
@@ -124,9 +126,9 @@ The `get` magic method allow you to call any string after the word 'get' and it 
 ```
 
 ```php
-echo $object->getPaygateId();           // 10011072130
-echo $object->getPayRequestId();        // 23B785AE-C96C-32AF-4879-D2C9363DB6E8
-echo $object->getReference();           // pgtest_123456789
+echo $object->getPaygateId();       // 10011072130
+echo $object->getPayRequestId();    // 23B785AE-C96C-32AF-4879-D2C9363DB6E8
+echo $object->getReference();       // pgtest_123456789
 ```
 
 ## Change log

@@ -6,10 +6,8 @@ Contributions are accepted via Pull Requests on [Github](https://github.com/pwpa
 
 # Things you could do
 If you want to contribute but do not know where to start, this list provides some starting points.
-- Add Query endpoint
 - Add tests
 - Set up TravisCI, ScrutinizerCI
-- Write a comprehensive ReadMe
 
 ## Pull Requests
 

@@ -2,20 +2,17 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
-use PWParsons\PayGate\PayGate;
-use PWParsons\PayGate\Foundation\Protocol\BaseProtocol;
-
 class InitiateProtocol extends BaseProtocol
 {
-    /**
-     * Extending endpoint of the BaseProtocol
+    /*
+     * Extending endpoint of the BaseProtocol.
      *
      * @var string
      */
     protected $endpoint = '/initiate.trans';
 
-    /**
-     * Create new instance of an empty initiate object
+    /*
+     * Create new instance of an empty initiate object.
      *
      * @return mixed
      */
@@ -32,7 +29,7 @@ class InitiateProtocol extends BaseProtocol
                 'TRANSACTION_DATE'  => now()->format('Y-m-d H:i:s'),
                 'LOCALE'            => config('paygate.locale'),
                 'COUNTRY'           => config('paygate.country'),
-                'EMAIL'             => ''
+                'EMAIL'             => '',
             ]
         ], $this);
     }

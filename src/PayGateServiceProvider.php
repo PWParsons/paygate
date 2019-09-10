@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class PayGateServiceProvider extends ServiceProvider
 {
-    /**
+    /*
      * Perform post-registration booting of services.
      *
      * @return void
@@ -21,7 +21,7 @@ class PayGateServiceProvider extends ServiceProvider
         }
     }
 
-    /**
+    /*
      * Register any package services.
      *
      * @return void
@@ -36,7 +36,7 @@ class PayGateServiceProvider extends ServiceProvider
         });
     }
 
-    /**
+    /*
      * Get the services provided by the provider.
      *
      * @return array
@@ -45,8 +45,8 @@ class PayGateServiceProvider extends ServiceProvider
     {
         return ['paygate'];
     }
-    
-    /**
+
+    /*
      * Console-specific booting.
      *
      * @return void

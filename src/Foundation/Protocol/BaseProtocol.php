@@ -10,29 +10,29 @@ use PWParsons\PayGate\Foundation\Objects\JSONObject;
 
 class BaseProtocol
 {
-    /**
-     * API Object class container
+    /*
+     * API Object class container.
      *
      * @var PayGate
      */
     public $api;
 
-    /**
-     * The resource container
+    /*
+     * The resource container.
      *
      * @var JSONObject
      */
     public $resource;
 
-    /**
-     * Parent endpoint of the BaseProtocol
+    /*
+     * Parent endpoint of the BaseProtocol.
      *
      * @var string
      */
     protected $endpoint;
 
-    /**
-     * Error codes
+    /*
+     * Error codes.
      *
      * @var array
      */
@@ -64,7 +64,7 @@ class BaseProtocol
         'VAULT_NOT_ACCEPTED'    => 'Card types enabled on terminal not available for vaulting',
     ];
 
-    /**
+    /*
      * Construct the base protocol class.
      *
      * @param  PayGate $api
@@ -76,7 +76,7 @@ class BaseProtocol
         $this->api = $api;
     }
 
-    /**
+    /*
      * Create HTTP request wrapped around GuzzleHttp client and return result.
      *
      * @return JSONObject
@@ -87,7 +87,7 @@ class BaseProtocol
 
         try {
             $response = $request->post("{$this->api->baseUrl}{$this->endpoint}", [
-                'form_params' => $body
+                'form_params' => $body,
             ]);
 
             parse_str($response->getBody()->getContents(), $response);
@@ -100,33 +100,33 @@ class BaseProtocol
         return $response;
     }
 
-    /**
-     * Create new instance of object
+    /*
+     * Create new instance of object.
      *
      * @return JSONObject
      */
     public function instantiate($data = [], $protocol = false)
     {
         $this->resource = new JSONObject($data, $this);
-        
+
         return $this->resource;
     }
 
-    /**
-     * Submit request to API to store an object
+    /*
+     * Submit request to API to store an object.
      *
      * @return JSONObject
      */
     public function create(array $data)
     {
-        $data['data']['CHECKSUM'] = md5(implode('', $data['data']) . config('paygate.secret'));
+        $data['data']['CHECKSUM'] = md5(implode('', $data['data']).config('paygate.secret'));
 
         $response = $this->createRequest($data['data']);
 
         if (array_key_exists('ERROR', $response)) {
             $response = [
                 'ERROR_CODE'    => $response['ERROR'],
-                'ERROR_MESSAGE' => $this->errorCodes[$response['ERROR']]
+                'ERROR_MESSAGE' => $this->errorCodes[$response['ERROR']],
             ];
         }
         

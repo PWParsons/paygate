@@ -4,14 +4,14 @@ namespace PWParsons\PayGate\Foundation\Objects;
 
 class JSONObject
 {
-    /**
+    /*
      * Container for the object data.
      *
      * @var array
      */
     public $resource;
 
-    /**
+    /*
      * Container for the API protocol/service instantiation.
      *
      * @var mixed
@@ -24,37 +24,37 @@ class JSONObject
         $this->protocol = $protocol;
     }
 
-    /**
+    /*
      * Returns true if the expected JSON result is found.
      *
-     * @return boolean
+     * @return bool
      */
     public function gotExpectedResult()
     {
-        return (isset($this->resource['meta']) && !array_key_exists('ERROR_CODE', $this->resource['meta']));
+        return isset($this->resource['meta']) && ! array_key_exists('ERROR_CODE', $this->resource['meta']);
     }
 
-    /**
+    /*
      * An alias for gotExpectedResult().
      *
-     * @return boolean
+     * @return bool
      */
     public function succeeds()
     {
         return $this->gotExpectedResult();
     }
 
-    /**
+    /*
      * Returns true if the expected JSON result is not found.
      *
-     * @return boolean
+     * @return bool
      */
     public function fails()
     {
-        return !$this->succeeds();
+        return ! $this->succeeds();
     }
 
-    /**
+    /*
      * Magic method that catches undefined functions looks for custom magic
      * method and returns the result. An exception is thrown if the function
      * does not exist and it is not a magic method.
@@ -86,8 +86,8 @@ class JSONObject
         return $this;
     }
 
-    /**
-     * Returns the entire resource object
+    /*
+     * Returns the entire resource object.
      *
      * @return mixed
      */

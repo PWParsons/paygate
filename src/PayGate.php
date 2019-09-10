@@ -7,35 +7,35 @@ use PWParsons\PayGate\Foundation\Protocol\RedirectProtocol;
 
 class PayGate
 {
-    /**
+    /*
      * The config container.
      *
      * @var Config
      */
     public $config;
 
-    /**
+    /*
      * The base URL for API calls.
      *
      * @var JSONObject
      */
     public $baseUrl = 'https://secure.paygate.co.za/payweb3';
 
-    /**
+    /*
      * The initiate protocol container.
      *
      * @var InitiateProtocol
      */
     private $initiate;
 
-    /**
+    /*
      * The redirect protocol container.
      *
      * @var RedirectProtocol
      */
-    // private $redirect;
+    private $redirect;
 
-    /**
+    /*
      * Basically a bootstrapper for the API class, ensures config integrity and
      * throws an exception if there are issues with the config.
      *
@@ -50,8 +50,8 @@ class PayGate
         $this->initiate = new InitiateProtocol($this);
     }
 
-    /**
-     * Validates the required configuration settings
+    /*
+     * Validates the required configuration settings.
      *
      * @return null
      *
@@ -68,8 +68,8 @@ class PayGate
         }
     }
 
-    /**
-     * Returns the json object
+    /*
+     * Returns the initiate json object.
      *
      * @return JSONObject
      */
@@ -78,8 +78,8 @@ class PayGate
         return $this->initiate->instantiate();
     }
 
-    /**
-     * Returns the view that redirects to PayGate
+    /*
+     * Returns the view that redirects to PayGate.
      *
      * @return \Illuminate\View\View
      */

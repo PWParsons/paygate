@@ -31,7 +31,7 @@ class JSONObject
      */
     public function gotExpectedResult()
     {
-        return (isset($this->resource['meta']) && !array_key_exists('ERROR', $this->resource['meta']));
+        return (isset($this->resource['meta']) && !array_key_exists('ERROR_CODE', $this->resource['meta']));
     }
 
     /**
@@ -55,32 +55,9 @@ class JSONObject
     }
 
     /**
-     * Retreive the PayGate error code.
-     *
-     * @return int
-     */
-    public function getErrorCode()
-    {
-        return $this->fails() ? $this->resource['meta']['ERROR'] : '';
-    }
-
-    /**
-     * Retreive the PayGate error message.
-     *
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->fails() ? $this->resource['meta']['ERROR_MESSAGE'] : '';
-    }
-
-    /**
-     * Magic method that catches undefined functions
-     * looks for custom magic method and returns the
-     * result.
-     *
-     * An exception is thrown is the function does not exist
-     * and it is not a magic method.
+     * Magic method that catches undefined functions looks for custom magic
+     * method and returns the result. An exception is thrown if the function
+     * does not exist and it is not a magic method.
      *
      * @return mixed
      */
@@ -92,6 +69,12 @@ class JSONObject
             $name = strtoupper(implode('_', $arr));
 
             $this->resource['data'][$name] = $name == 'AMOUNT' ? bcmul($args[0], 100) : $args[0];
+        } elseif (substr($name, 0, 3) == 'get') {
+            $arr = preg_split('/(?=[A-Z])/', substr($name, 3));
+            $arr = array_filter($arr);
+            $name = strtoupper(implode('_', $arr));
+
+            return $this->resource['meta'][$name];
         } else {
             if ($this->protocol) {
                 return $this->protocol->{$name}($this->resource);

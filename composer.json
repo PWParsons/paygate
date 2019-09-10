@@ -9,7 +9,7 @@
         }
     ],
     "homepage": "https://github.com/pwparsons/paygate",
-    "keywords": ["Laravel", "PayGate"],
+    "keywords": ["Laravel", "PayGate", "PayWeb3"],
     "require": {
         "illuminate/support": "~5"
     },

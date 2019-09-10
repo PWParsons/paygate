@@ -16,14 +16,30 @@ class RedirectProtocol extends BaseProtocol
      */
     protected $endpoint = '/process.trans';
 
+    /**
+     * Return the view with the form that is submitted automatically
+     *
+     * @return \Illuminate\View\View
+     */
     public function toPayGate()
     {
-        $url = $this->api->baseUrl . $this->endpoint;
-        $request_id = session('PayGate.PAY_REQUEST_ID');
-        $checksum = session('PayGate.CHECKSUM');
+        $this->validateSession();
 
-        session()->forget('PayGate');
+        $paygate = [
+            'url'           => $this->api->baseUrl . $this->endpoint,
+            'request_id'    => session('PAYGATE.PAY_REQUEST_ID'),
+            'checksum'      => session('PAYGATE.CHECKSUM'),
+        ];
 
-        return view('PayGate::create', compact('url', 'request_id', 'checksum'));
+        session()->forget('PAYGATE');
+
+        return view('PayGate::create', compact('paygate'));
+    }
+
+    private function validateSession()
+    {
+        if (!session()->has('PAYGATE')) {
+            throw new \InvalidArgumentException('A transaction has not been inititated.');
+        }
     }
 }

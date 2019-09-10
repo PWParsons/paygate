@@ -1,25 +1,23 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Route;
 use PWParsons\PayGate\Facades\PayGate;
 
-Route::get('paygate', function () {
+Route::get('/', function () {
     $http = PayGate::initiate()
-                   ->instantiate()
                    ->withReference('Test')
                    ->withAmount(39.65)
                    ->withEmail('peterw.parsons@gmail.com')
                    ->create();
-    
-    if ($http->succeeds()) {
-        return PayGate::redirect();
 
-        dd($http->all());
-    } else {
+    if ($http->fails()) {
         dump($http->getErrorCode());
         dump($http->getErrorMessage());
         die();
     }
+
+    dd($http->getPayRequestId());
+    dd($http->getChecksum());
+    dd($http->all());
+
+    return PayGate::redirect();
 });

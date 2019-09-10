@@ -33,33 +33,29 @@ class PayGate
      *
      * @var RedirectProtocol
      */
-    private $redirect;
+    // private $redirect;
 
     /**
-     * Basically a bootstrapper for the API class,
-     * ensures config integrity and throws an exception
-     * if there are issues with the config.
+     * Basically a bootstrapper for the API class, ensures config integrity and
+     * throws an exception if there are issues with the config.
      *
      * @return void
-     *
      */
     public function __construct(array $config)
     {
         $this->config = $config;
         $this->validateConfig();
 
-        $this->initiate = new InitiateProtocol($this);
         $this->redirect = new RedirectProtocol($this);
+        $this->initiate = new InitiateProtocol($this);
     }
 
     /**
-     * Pre-allocates the authentication header to be submitted
-     * with each API request.
+     * Validates the required configuration settings
      *
      * @return null
      *
      * @throws Exception If the configuration file is missing required values.
-     *
      */
     private function validateConfig()
     {
@@ -73,21 +69,19 @@ class PayGate
     }
 
     /**
-     * Returns the initiate protocol container
+     * Returns the json object
      *
-     * @return InitiateProtocol
-     *
+     * @return JSONObject
      */
     public function initiate()
     {
-        return $this->initiate;
+        return $this->initiate->instantiate();
     }
 
     /**
-     * Returns the redirect protocol container
+     * Returns the view that redirects to PayGate
      *
-     * @return RedirectProtocol
-     *
+     * @return \Illuminate\View\View
      */
     public function redirect()
     {

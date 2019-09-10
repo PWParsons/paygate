@@ -2,6 +2,7 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
+use PWParsons\PayGate\PayGate;
 use PWParsons\PayGate\Foundation\Protocol\BaseProtocol;
 
 class InitiateProtocol extends BaseProtocol
@@ -17,7 +18,6 @@ class InitiateProtocol extends BaseProtocol
      * Create new instance of an empty initiate object
      *
      * @return mixed
-     *
      */
     public function instantiate($data = [], $protocol = false)
     {

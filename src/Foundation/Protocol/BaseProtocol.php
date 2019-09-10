@@ -70,7 +70,6 @@ class BaseProtocol
      * @param  PayGate $api
      *
      * @return void
-     *
      */
     public function __construct(PayGate $api)
     {
@@ -81,7 +80,6 @@ class BaseProtocol
      * Create HTTP request wrapped around GuzzleHttp client and return result.
      *
      * @return JSONObject
-     *
      */
     public function createRequest($body = [])
     {
@@ -106,7 +104,6 @@ class BaseProtocol
      * Create new instance of object
      *
      * @return JSONObject
-     *
      */
     public function instantiate($data = [], $protocol = false)
     {
@@ -119,7 +116,6 @@ class BaseProtocol
      * Submit request to API to store an object
      *
      * @return JSONObject
-     *
      */
     public function create(array $data)
     {
@@ -129,12 +125,12 @@ class BaseProtocol
 
         if (array_key_exists('ERROR', $response)) {
             $response = [
-                'ERROR' => $response['ERROR'],
+                'ERROR_CODE'    => $response['ERROR'],
                 'ERROR_MESSAGE' => $this->errorCodes[$response['ERROR']]
             ];
         }
         
-        session(['PayGate' => $response]);
+        session(['PAYGATE' => $response]);
         $this->resource->resource['meta'] = $response;
 
         return $this->resource;

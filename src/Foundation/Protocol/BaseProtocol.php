@@ -129,7 +129,7 @@ class BaseProtocol
                 'ERROR_MESSAGE' => $this->errorCodes[$response['ERROR']],
             ];
         }
-        
+
         session(['PAYGATE' => $response]);
         $this->resource->resource['meta'] = $response;
 

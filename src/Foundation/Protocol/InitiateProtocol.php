@@ -30,7 +30,7 @@ class InitiateProtocol extends BaseProtocol
                 'LOCALE'            => config('paygate.locale'),
                 'COUNTRY'           => config('paygate.country'),
                 'EMAIL'             => '',
-            ]
+            ],
         ], $this);
     }
 }

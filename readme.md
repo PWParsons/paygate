@@ -153,3 +153,15 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 ## License
 
 license. Please see the [license file](license.md) for more information.
+
+[ico-version]: https://img.shields.io/packagist/v/pwparsons/paygate.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/pwparsons/paygate.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/pwparsons/paygate/master.svg?style=flat-square
+[ico-styleci]: https://styleci.io/repos/12345678/shield
+
+[link-packagist]: https://packagist.org/packages/pwparsons/paygate
+[link-downloads]: https://packagist.org/packages/pwparsons/paygate
+[link-travis]: https://travis-ci.org/pwparsons/paygate
+[link-styleci]: https://styleci.io/repos/12345678
+[link-author]: https://github.com/pwparsons
+[link-contributors]: ../../contributors

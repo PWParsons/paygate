@@ -133,6 +133,22 @@ $call = PayGate::initiate()
                ->create();
 ```
 
+If you want to get the response from the initiate object:
+
+```php
+// Return the whole initiate object
+$call->all();
+
+// Returns the error code if an error exists.
+$call->getErrorCode();
+
+// Returns the error message of an error exists
+$call->getErrorMessage();
+
+// Returns the PAY_REQUEST_ID
+$call->getPayRequestId();
+```
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
@@ -152,4 +168,4 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 
 ## License
 
-license. Please see the [license file](license.md) for more information.
+The MIT License (MIT). Please see the [license file](license.md) for more information.

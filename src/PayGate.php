@@ -2,6 +2,7 @@
 
 namespace PWParsons\PayGate;
 
+use PWParsons\PayGate\Foundation\Protocol\QueryProtocol;
 use PWParsons\PayGate\Foundation\Protocol\InitiateProtocol;
 use PWParsons\PayGate\Foundation\Protocol\RedirectProtocol;
 
@@ -36,6 +37,13 @@ class PayGate
     private $redirect;
 
     /*
+     * The query protocol container.
+     *
+     * @var QueryProtocol
+     */
+    private $query;
+
+    /*
      * Basically a bootstrapper for the API class, ensures config integrity and
      * throws an exception if there are issues with the config.
      *
@@ -46,8 +54,9 @@ class PayGate
         $this->config = $config;
         $this->validateConfig();
 
-        $this->redirect = new RedirectProtocol($this);
         $this->initiate = new InitiateProtocol($this);
+        $this->redirect = new RedirectProtocol($this);
+        $this->query    = new QueryProtocol($this);
     }
 
     /*
@@ -86,5 +95,15 @@ class PayGate
     public function redirect()
     {
         return $this->redirect->toPayGate();
+    }
+
+    /*
+     * Returns the query json object.
+     *
+     * @return JSONObject
+     */
+    public function query()
+    {
+        return $this->query->instantiate();
     }
 }

@@ -89,7 +89,7 @@ return [
 
 ## Usage
 
-After you've installed the package and filled in the values in the config-file working with this package will be a breeze. All the following examples use the facade. Don't forget to import it at the top of your file.
+After you've installed the package and filled in the values in the config file working with this package will be a breeze. All the following examples use the facade. Don't forget to import it at the top of your file.
 
 ```php
 use PayGate;
@@ -97,19 +97,17 @@ use PayGate;
 
 ### Creating a transaction
 
-The `with` and `get` magic methods that allows you to set or get a string after the word 'with' or 'get' provided within the object it is being called on.
-
 ```php
 // Initiate transaction
-$call = PayGate::initiate()
+$http = PayGate::initiate()
                ->withReference('pgtest_123456789')
                ->withAmount(32.99)
                ->withEmail('email@example.com')
                ->create();
 
-if ($call->fails()) {
-    $errorCode = $call->getErrorCode();
-    $errorMsg  = $call->getErrorMessage();
+if ($http->fails()) {
+    $errorCode = $http->getErrorCode();
+    $errorMsg  = $http->getErrorMessage();
 
     return "Dang it! Error '{$errorCode}' with message '{$errorMsg}'.";
 }
@@ -121,7 +119,7 @@ return PayGate::redirect();
 If you need override the default values and add a notify url:
 
 ```php
-$call = PayGate::initiate()
+$http = PayGate::initiate()
                ->withReference('pgtest_123456789')
                ->withAmount(32.99)
                ->withEmail('email@example.com')
@@ -131,22 +129,68 @@ $call = PayGate::initiate()
                ->withReturnUrl('https://my.return.url/page')
                ->withNotifyUrl('https://my.notify.url/page')
                ->create();
+
+dd($http->all());
 ```
 
-If you want to get the response from the initiate object:
+An example of the initiate response can be found in the [documentation](http://docs.paygate.co.za/#response).
+
+### Querying a transaction
 
 ```php
-// Return the whole initiate object
-$call->all();
+$http = PayGate::query()
+               ->withPayRequestId('YOUR_PAY_REQUEST_ID_HERE')
+               ->withReference('pgtest_123456789')
+               ->create();
 
-// Returns the error code if an error exists.
-$call->getErrorCode();
+if ($http->fails()) {
+    $errorCode = $http->getErrorCode();
+    $errorMsg  = $http->getErrorMessage();
 
-// Returns the error message of an error exists
-$call->getErrorMessage();
+    return "Dang it! Error '{$errorCode}' with message '{$errorMsg}'.";
+}
 
-// Returns the PAY_REQUEST_ID
-$call->getPayRequestId();
+dd($http->all());
+```
+
+An example of the query response can be found in the [documentation](http://docs.paygate.co.za/#response-2).
+
+### Helpful Methods
+
+The `with` magic method that allows you to set a string after the word 'with' provided within the object it is being called on. This works in exactly the same way as the magic getter except it sets field values and returns the object so that you can chain setters, for example:
+
+```php
+$object->withReference('pgtest_123456789')
+       ->withAmount(32.99)
+       ->withEmail('email@example.com')
+       ->withReturnUrl('https://my.return.url/page');
+```
+
+Will result in the following:
+
+```json
+{
+    "REFERENCE": "pgtest_123456789",
+    "AMOUNT": "3299",
+    "EMAIL": "email@example.com",
+    "RETURN_URL": "https://my.return.url/page"
+}
+```
+
+The `get` magic method allow you to call any string after the word 'get' and it will return that value, for example:
+
+```json
+{
+    "PAYGATE_ID": "10011072130",
+    "PAY_REQUEST_ID": "23B785AE-C96C-32AF-4879-D2C9363DB6E8",
+    "REFERENCE": "pgtest_123456789"
+}
+```
+
+```php
+echo $object->getPaygateId();           // 10011072130
+echo $object->getPayRequestId();        // 23B785AE-C96C-32AF-4879-D2C9363DB6E8
+echo $object->getReference();           // pgtest_123456789
 ```
 
 ## Change log

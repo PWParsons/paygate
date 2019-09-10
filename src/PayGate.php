@@ -56,7 +56,7 @@ class PayGate
 
         $this->initiate = new InitiateProtocol($this);
         $this->redirect = new RedirectProtocol($this);
-        $this->query    = new QueryProtocol($this);
+        $this->query = new QueryProtocol($this);
     }
 
     /*

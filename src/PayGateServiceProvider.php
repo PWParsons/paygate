@@ -45,7 +45,7 @@ class PayGateServiceProvider extends ServiceProvider
     {
         return ['paygate'];
     }
-    
+
     /**
      * Console-specific booting.
      *

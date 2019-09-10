@@ -27,17 +27,17 @@ class JSONObject
     /**
      * Returns true if the expected JSON result is found.
      *
-     * @return boolean
+     * @return bool
      */
     public function gotExpectedResult()
     {
-        return (isset($this->resource['meta']) && !array_key_exists('ERROR_CODE', $this->resource['meta']));
+        return isset($this->resource['meta']) && ! array_key_exists('ERROR_CODE', $this->resource['meta']);
     }
 
     /**
      * An alias for gotExpectedResult().
      *
-     * @return boolean
+     * @return bool
      */
     public function succeeds()
     {
@@ -47,11 +47,11 @@ class JSONObject
     /**
      * Returns true if the expected JSON result is not found.
      *
-     * @return boolean
+     * @return bool
      */
     public function fails()
     {
-        return !$this->succeeds();
+        return ! $this->succeeds();
     }
 
     /**
@@ -87,7 +87,7 @@ class JSONObject
     }
 
     /**
-     * Returns the entire resource object
+     * Returns the entire resource object.
      *
      * @return mixed
      */

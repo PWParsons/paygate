@@ -149,3 +149,6 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 ## License
 
 The MIT License (MIT). Please see the [license file](license.md) for more information.
+
+[link-author]: https://github.com/pwparsons
+[link-contributors]: ../../contributors

@@ -23,9 +23,6 @@ To publish the config file to `config/paygate.php` run:
 php artisan vendor:publish --tag=paygate.config
 ```
 
-This will publish a file `paygate.php` in your config directory with the following contents:
-
-```php
 return [
 
     /*

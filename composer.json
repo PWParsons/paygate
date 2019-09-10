@@ -1,6 +1,12 @@
 {
     "name": "pwparsons/paygate",
-    "description": ":description",
+    "description": "A Laravel package to integrate PayGate's PayWeb3 API.",
+    "keywords": [
+        "Laravel",
+        "PayGate",
+        "PayWeb3"
+    ],
+    "homepage": "https://github.com/pwparsons/paygate",
     "license": "MIT",
     "authors": [
         {
@@ -8,25 +14,12 @@
             "email": "peterw.parsons@gmail.com"
         }
     ],
-    "homepage": "https://github.com/pwparsons/paygate",
-    "keywords": ["Laravel", "PayGate", "PayWeb3"],
     "require": {
-        "illuminate/support": "~5"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~7.0",
-        "mockery/mockery": "^1.1",
-        "orchestra/testbench": "~3.0",
-        "sempro/phpunit-pretty-print": "^1.0"
+        "illuminate/support": "~5.8.0|~6.0.0"
     },
     "autoload": {
         "psr-4": {
             "PWParsons\\PayGate\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "PWParsons\\PayGate\\Tests\\": "tests"
         }
     },
     "extra": {

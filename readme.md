@@ -7,7 +7,7 @@
 
 This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel 5.
 
-The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3)
+The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3).
 
 ## Installation
 
@@ -125,6 +125,8 @@ The `get` magic method allows you to call any string after the word 'get' and it
 }
 ```
 
+Getting data from the object:
+
 ```php
 echo $object->getPaygateId();       // 10011072130
 echo $object->getPayRequestId();    // 23B785AE-C96C-32AF-4879-D2C9363DB6E8
@@ -145,12 +147,9 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 
 ## Credits
 
-- [Peter Parsons][link-author]
-- [All Contributors][link-contributors]
+- [Peter Parsons](https://github.com/pwparsons)
+- [All Contributors](../../contributors)
 
 ## License
 
-The MIT License (MIT). Please see the [license file](license.md) for more information.
-
-[link-author]: https://github.com/pwparsons
-[link-contributors]: ../../contributors
+The MIT License (MIT). Please see the [license file](license.md) for more information. 

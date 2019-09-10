@@ -143,7 +143,7 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 
 ## Credits
 
-- [author name][link-author]
+- [Peter Parsons][link-author]
 - [All Contributors][link-contributors]
 
 ## License

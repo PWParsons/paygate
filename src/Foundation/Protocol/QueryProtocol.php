@@ -26,4 +26,26 @@ class QueryProtocol extends BaseProtocol
             ],
         ], $this);
     }
+
+    /*
+     * Special primary function to get the transaction status
+     * specifically for the query intent type.
+     *
+     * @return string
+     */
+    public function transactionStatus()
+    {
+        return $this->transactionStatus[$this->resource->resource['meta']['TRANSACTION_STATUS']];
+    }
+
+    /*
+     * Special primary function to get the payment method
+     * specifically for the query intent type.
+     *
+     * @return string
+     */
+    public function paymentMethod()
+    {
+        return $this->paymentMethodCodes[$this->resource->resource['meta']['PAY_METHOD']];
+    }
 }

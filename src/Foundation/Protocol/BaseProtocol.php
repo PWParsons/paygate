@@ -65,6 +65,35 @@ class BaseProtocol
     ];
 
     /*
+     * Transaction status.
+     *
+     * @var array
+     */
+    protected $transactionStatus = [
+        '0' => 'Not Done',
+        '1' => 'Approved',
+        '2' => 'Declined',
+        '3' => 'Cancelled',
+        '4' => 'User Cancelled',
+        '5' => 'Received by PayGate',
+        '7' => 'Settlement Voided',
+    ];
+
+    /*
+     * Payment method codes.
+     *
+     * @var array
+     */
+    protected $paymentMethodCodes = [
+        'CC' => 'Credit Card',
+        'DC' => 'Debit Card',
+        'EW' => 'E-Wallet',
+        'BT' => 'Bank Transfer',
+        'CV' => 'Cash Voucher',
+        'PC' => 'Pre-Paid Card',
+    ];
+
+    /*
      * Construct the base protocol class.
      *
      * @param  PayGate $api

@@ -5,7 +5,7 @@
 [![StyleCI](https://styleci.io/repos/203629326/shield?branch=master)](https://styleci.io/repos/203629326)
 [![Total Downloads](https://img.shields.io/packagist/dt/pwparsons/paygate.svg?style=flat-square)](https://packagist.org/pwparsons/paygate)
 
-This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel 5.
+This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel.
 
 The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3).
 

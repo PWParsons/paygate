@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "illuminate/support": "~5.8.0|~6.0.0",
+        "illuminate/support": "^5.8.15|^6.0",
         "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {

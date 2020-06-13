@@ -11,6 +11,14 @@ This package provides an easy way to integrate PayGate's PayWeb3 API with Larave
 
 The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3).
 
+ Compatibility Chart
+--------------------------------------------------------------------------------
+
+| Package Version | Laravel      | PHP  |
+|-----------------|--------------|------|
+|    **2.0.0**    | 7.15+        | 7.4+ |
+|      1.3.2      | 5.6 – 6.x    | 7.1+ |
+
 ## Installation
 
 You can install this package via composer using:

@@ -115,11 +115,11 @@ class BaseProtocol
         $request = new Client();
 
         try {
-            $response = $request->post("{$this->api->baseUrl}{$this->endpoint}", [
+            $result = $request->post("{$this->api->baseUrl}{$this->endpoint}", [
                 'form_params' => $body,
             ]);
 
-            parse_str($response->getBody()->getContents(), $response);
+            parse_str($result->getBody()->getContents(), $response);
         } catch (ClientException $e) {
             $response = $e->getResponse()->getBody()->getContents();
         } catch (RequestException $e) {

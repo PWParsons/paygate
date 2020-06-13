@@ -68,7 +68,7 @@ class JSONObject
             $arr = array_filter($arr);
             $name = strtoupper(implode('_', $arr));
 
-            $this->resource['data'][$name] = $name == 'AMOUNT' ? bcmul($args[0], 100) : $args[0];
+            $this->resource['data'][$name] = $name == 'AMOUNT' ? bcmul($args[0], '100') : $args[0];
         } elseif (substr($name, 0, 3) == 'get') {
             $arr = preg_split('/(?=[A-Z])/', substr($name, 3));
             $arr = array_filter($arr);

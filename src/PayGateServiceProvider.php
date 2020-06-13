@@ -20,5 +20,9 @@ class PayGateServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/paygate.php', 'paygate');
+
+        $this->app->singleton('paygate', function ($app) {
+            return new PayGate($app->config->get('paygate'));
+        });
     }
 }

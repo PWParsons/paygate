@@ -36,11 +36,11 @@ class JSONObject
      * does not exist and it is not a magic method.
      *
      * @param string $name
-     * @param mixed $args
+     * @param $args
      * @return $this
      * @throws \Exception
      */
-    public function __call(string $name, mixed $args)
+    public function __call(string $name, $args)
     {
         if (substr($name, 0, 4) == 'with') {
             $arr = preg_split('/(?=[A-Z])/', substr($name, 4));

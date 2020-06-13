@@ -13,6 +13,14 @@ This package provides an easy way to integrate PayGate's PayWeb3 API with Larave
 
 The official documentation can be found [here](http://docs.paygate.co.za/#payweb-3).
 
+ Compatibility Chart
+--------------------------------------------------------------------------------
+
+| Package Version | Laravel      | PHP  |
+|-----------------|--------------|------|
+|    **2.0.0**    | 7.15+        | 7.4+ |
+|      1.3.2      | 5.6 – 6.x    | 7.1+ |
+
 ## Installation
 
 You can install this package via composer using:
@@ -41,34 +49,21 @@ $http = PayGate::initiate()
                ->withReference('pgtest_123456789')
                ->withAmount(32.99)
                ->withEmail('email@example.com')
+               ->withCurrency('USD') // Optional: defaults to ZAR
+               ->withCountry('USA') // Optional: defaults to ZAF
+               ->withLocale('en-us') // Optional: defaults to 'en'
+               ->withReturnUrl('https://website.com/return_url')
+               ->withNotifyUrl('https://website.com/notify_url') // Optional
                ->create();
 
 if ($http->fails()) {
-    $errorCode = $http->getErrorCode();
-    $errorMsg  = $http->getErrorMessage();
-
-    return "Dang it! Error '{$errorCode}' with message '{$errorMsg}'.";
+    dump($http->getErrorCode());
+    dump($http->getErrorMessage());
+    dump($http->all());
 }
 
 // Redirect to PayGate's payment page
 return PayGate::redirect();
-```
-
-If you need override the default values and add a notify url:
-
-```php
-$http = PayGate::initiate()
-               ->withReference('pgtest_123456789')
-               ->withAmount(32.99)
-               ->withEmail('email@example.com')
-               ->withCurrency('USD')
-               ->withCountry('USA')
-               ->withLocale('en-us')
-               ->withReturnUrl('https://my.return.url/page')
-               ->withNotifyUrl('https://my.notify.url/page')
-               ->create();
-
-dd($http->all());
 ```
 
 An example of the initiate response can be found in the [documentation](http://docs.paygate.co.za/#response).
@@ -82,16 +77,29 @@ $http = PayGate::query()
                ->create();
 
 if ($http->fails()) {
-    $errorCode = $http->getErrorCode();
-    $errorMsg  = $http->getErrorMessage();
-
-    return "Dang it! Error '{$errorCode}' with message '{$errorMsg}'.";
+    dump($http->getErrorCode());
+    dump($http->getErrorMessage());
+    dump($http->all());
 }
 
 dd($http->all());
 ```
 
 An example of the query response can be found in the [documentation](http://docs.paygate.co.za/#response-2).
+
+### Tip
+
+Paygate will post to the RETURN_URL and NOTIFY_URL. Exclude these URI's from CSRF verification by adding them to the VerifyCsrfToken middleware. E.g.
+
+```php
+class VerifyCsrfToken extends Middleware
+{
+    protected $except = [
+        'return_url',
+        'notify_url',
+    ];
+}
+```
 
 ### Helpful Methods
 

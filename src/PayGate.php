@@ -2,7 +2,6 @@
 
 namespace PWParsons\PayGate;
 
-use Illuminate\View\View;
 use PWParsons\PayGate\Foundation\Objects\JSONObject;
 use PWParsons\PayGate\Foundation\Protocol\InitiateProtocol;
 use PWParsons\PayGate\Foundation\Protocol\QueryProtocol;
@@ -46,7 +45,7 @@ class PayGate
         return $this->initiate->instantiate();
     }
 
-    public function redirect(): View
+    public function redirect(): string
     {
         return $this->redirect->toPayGate();
     }

@@ -2,8 +2,6 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
-use Illuminate\View\View;
-
 class RedirectProtocol extends BaseProtocol
 {
     protected string $endpoint = '/process.trans';

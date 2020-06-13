@@ -6,7 +6,7 @@ class JSONObject
 {
     public array $resource;
 
-    public mixed $protocol;
+    public $protocol;
 
     public function __construct(array $data, $protocol = false)
     {

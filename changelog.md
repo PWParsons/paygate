@@ -2,12 +2,14 @@
 
 All notable changes to `PayGate` will be documented in this file.
 
+## Version 1.3.1 - 2020-06-13
+
+- Move notify_url to end of initiate protocol (#5)
+
 ## Version 1.1.0
 
-### Added
-- Query Protocol
+- Add query protocol
 
 ## Version 1.0
 
-### Added
-- Everything
+- initial release

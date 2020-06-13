@@ -2,7 +2,6 @@
 
 [![Latest Version](https://img.shields.io/github/release/pwparsons/paygate.svg?style=flat-square)](https://github.com/pwparsons/paygate/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![StyleCI](https://styleci.io/repos/203629326/shield?branch=master)](https://styleci.io/repos/203629326)
 [![Total Downloads](https://img.shields.io/packagist/dt/pwparsons/paygate.svg?style=flat-square)](https://packagist.org/pwparsons/paygate)
 
 This package provides an easy way to integrate PayGate's PayWeb3 API with Laravel.

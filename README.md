@@ -130,11 +130,11 @@ echo $object->getReference();       // pgtest_123456789
 
 ## Change log
 
-Please see the [changelog](changelog.md) for more information on what has changed recently.
+Please see the [changelog](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
-Please see [contributing.md](contributing.md) for details and a todolist.
+Please see [contributing.md](CONTRIBUTING.md) for details and a todolist.
 
 ## Security
 
@@ -147,4 +147,4 @@ If you discover any security related issues, please email [peterw.parsons@gmail.
 
 ## License
 
-The MIT License (MIT). Please see the [license file](license.md) for more information. 
+The MIT License (MIT). Please see the [license file](LICENSE.md) for more information. 

@@ -2,6 +2,10 @@
 
 All notable changes to `PayGate` will be documented in this file.
 
+## Version 2.0.0 - 2020-06-14
+
+- Drop support for versions of Laravel > 7.15 and php > 7.4
+
 ## Version 1.3.2 - 2020-06-13
 
 - Add support for Laravel 7

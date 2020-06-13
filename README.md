@@ -2,6 +2,8 @@
 
 [![Latest Version](https://img.shields.io/github/release/pwparsons/paygate.svg)](https://github.com/pwparsons/paygate/releases)
 ![Tests](https://github.com/PWParsons/paygate/workflows/Tests/badge.svg)
+![Psalm](https://github.com/PWParsons/paygate/workflows/Psalm/badge.svg)
+![Code Style](https://github.com/PWParsons/paygate/workflows/Check%20&%20fix%20styling/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/pwparsons/paygate.svg)](https://packagist.org/pwparsons/paygate)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 

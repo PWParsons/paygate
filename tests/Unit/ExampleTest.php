@@ -1,6 +1,6 @@
 <?php
 
-namespace PWParsons\PayGate\Tests;
+namespace PWParsons\PayGate\Unit;
 
 use PHPUnit\Framework\TestCase;
 

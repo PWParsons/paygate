@@ -2,21 +2,13 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
+use PWParsons\PayGate\Foundation\Objects\JSONObject;
+
 class QueryProtocol extends BaseProtocol
 {
-    /*
-     * Extending endpoint of the BaseProtocol.
-     *
-     * @var string
-     */
-    protected $endpoint = '/query.trans';
+    protected string $endpoint = '/query.trans';
 
-    /*
-     * Create new instance of an empty initiate object.
-     *
-     * @return mixed
-     */
-    public function instantiate($data = [], $protocol = false)
+    public function instantiate(array $data = [], $protocol = false): JSONObject
     {
         return parent::instantiate([
             'data' => [
@@ -27,24 +19,12 @@ class QueryProtocol extends BaseProtocol
         ], $this);
     }
 
-    /*
-     * Special primary function to get the transaction status
-     * specifically for the query intent type.
-     *
-     * @return string
-     */
-    public function transactionStatus()
+    public function transactionStatus(): string
     {
         return $this->transactionStatus[$this->resource->resource['meta']['TRANSACTION_STATUS']];
     }
 
-    /*
-     * Special primary function to get the payment method
-     * specifically for the query intent type.
-     *
-     * @return string
-     */
-    public function paymentMethod()
+    public function paymentMethod(): string
     {
         return $this->paymentMethodCodes[$this->resource->resource['meta']['PAY_METHOD']];
     }

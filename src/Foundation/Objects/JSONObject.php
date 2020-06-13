@@ -4,19 +4,9 @@ namespace PWParsons\PayGate\Foundation\Objects;
 
 class JSONObject
 {
-    /*
-     * Container for the object data.
-     *
-     * @var array
-     */
-    public $resource;
+    public array $resource;
 
-    /*
-     * Container for the API protocol/service instantiation.
-     *
-     * @var mixed
-     */
-    public $protocol;
+    public mixed $protocol;
 
     public function __construct(array $data, $protocol = false)
     {
@@ -24,51 +14,42 @@ class JSONObject
         $this->protocol = $protocol;
     }
 
-    /*
-     * Returns true if the expected JSON result is found.
-     *
-     * @return bool
-     */
-    public function gotExpectedResult()
+    public function gotExpectedResult(): bool
     {
-        return isset($this->resource['meta']) && ! array_key_exists('ERROR_CODE', $this->resource['meta']);
+        return isset($this->resource['meta'])
+            && ! array_key_exists('ERROR_CODE', $this->resource['meta']);
     }
 
-    /*
-     * An alias for gotExpectedResult().
-     *
-     * @return bool
-     */
-    public function succeeds()
+    public function succeeds(): bool
     {
         return $this->gotExpectedResult();
     }
 
-    /*
-     * Returns true if the expected JSON result is not found.
-     *
-     * @return bool
-     */
-    public function fails()
+    public function fails(): bool
     {
         return ! $this->succeeds();
     }
 
-    /*
+    /**
      * Magic method that catches undefined functions looks for custom magic
      * method and returns the result. An exception is thrown if the function
      * does not exist and it is not a magic method.
      *
-     * @return mixed
+     * @param string $name
+     * @param mixed $args
+     * @return $this
+     * @throws \Exception
      */
-    public function __call($name, $args)
+    public function __call(string $name, mixed $args)
     {
         if (substr($name, 0, 4) == 'with') {
             $arr = preg_split('/(?=[A-Z])/', substr($name, 4));
             $arr = array_filter($arr);
             $name = strtoupper(implode('_', $arr));
 
-            $this->resource['data'][$name] = $name == 'AMOUNT' ? bcmul($args[0], '100') : $args[0];
+            $this->resource['data'][$name] = $name == 'AMOUNT'
+                ? bcmul($args[0], '100')
+                : $args[0];
         } elseif (substr($name, 0, 3) == 'get') {
             $arr = preg_split('/(?=[A-Z])/', substr($name, 3));
             $arr = array_filter($arr);
@@ -86,12 +67,7 @@ class JSONObject
         return $this;
     }
 
-    /*
-     * Returns the entire resource object.
-     *
-     * @return mixed
-     */
-    public function all()
+    public function all(): array
     {
         return $this->resource;
     }

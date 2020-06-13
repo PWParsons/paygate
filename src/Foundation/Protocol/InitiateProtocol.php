@@ -2,21 +2,13 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
+use PWParsons\PayGate\Foundation\Objects\JSONObject;
+
 class InitiateProtocol extends BaseProtocol
 {
-    /*
-     * Extending endpoint of the BaseProtocol.
-     *
-     * @var string
-     */
-    protected $endpoint = '/initiate.trans';
+    protected string $endpoint = '/initiate.trans';
 
-    /*
-     * Create new instance of an empty initiate object.
-     *
-     * @return mixed
-     */
-    public function instantiate($data = [], $protocol = false)
+    public function instantiate(array $data = [], $protocol = false): JSONObject
     {
         return parent::instantiate([
             'data' => [

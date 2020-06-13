@@ -2,21 +2,13 @@
 
 namespace PWParsons\PayGate\Foundation\Protocol;
 
+use Illuminate\View\View;
+
 class RedirectProtocol extends BaseProtocol
 {
-    /*
-     * Extending endpoint of the BaseProtocol.
-     *
-     * @var string
-     */
-    protected $endpoint = '/process.trans';
+    protected string $endpoint = '/process.trans';
 
-    /*
-     * Return the view with the form that is submitted automatically.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function toPayGate()
+    public function toPayGate(): View
     {
         $this->validateSession();
 

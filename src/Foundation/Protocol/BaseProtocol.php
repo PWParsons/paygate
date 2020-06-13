@@ -10,33 +10,13 @@ use PWParsons\PayGate\PayGate;
 
 class BaseProtocol
 {
-    /*
-     * API Object class container.
-     *
-     * @var PayGate
-     */
-    public $api;
+    public PayGate $api;
 
-    /*
-     * The resource container.
-     *
-     * @var JSONObject
-     */
-    public $resource;
+    public JSONObject $resource;
 
-    /*
-     * Parent endpoint of the BaseProtocol.
-     *
-     * @var string
-     */
-    protected $endpoint;
+    protected string $endpoint;
 
-    /*
-     * Error codes.
-     *
-     * @var array
-     */
-    protected $errorCodes = [
+    protected array $errorCodes = [
         'CNTRY_INVALID' => 'Invalid Country',
         'DATA_AMT_NUM' => 'Amount is not a number',
         'DATA_AMT_ZERO' => 'Amount value is zero',
@@ -64,12 +44,7 @@ class BaseProtocol
         'VAULT_NOT_ACCEPTED' => 'Card types enabled on terminal not available for vaulting',
     ];
 
-    /*
-     * Transaction status.
-     *
-     * @var array
-     */
-    protected $transactionStatus = [
+    protected array $transactionStatus = [
         '0' => 'Not Done',
         '1' => 'Approved',
         '2' => 'Declined',
@@ -79,12 +54,7 @@ class BaseProtocol
         '7' => 'Settlement Voided',
     ];
 
-    /*
-     * Payment method codes.
-     *
-     * @var array
-     */
-    protected $paymentMethodCodes = [
+    protected array $paymentMethodCodes = [
         'CC' => 'Credit Card',
         'DC' => 'Debit Card',
         'EW' => 'E-Wallet',
@@ -93,23 +63,11 @@ class BaseProtocol
         'PC' => 'Pre-Paid Card',
     ];
 
-    /*
-     * Construct the base protocol class.
-     *
-     * @param  PayGate $api
-     *
-     * @return void
-     */
     public function __construct(PayGate $api)
     {
         $this->api = $api;
     }
 
-    /*
-     * Create HTTP request wrapped around GuzzleHttp client and return result.
-     *
-     * @return JSONObject
-     */
     public function createRequest($body = [])
     {
         $request = new Client();
@@ -129,24 +87,14 @@ class BaseProtocol
         return $response;
     }
 
-    /*
-     * Create new instance of object.
-     *
-     * @return JSONObject
-     */
-    public function instantiate($data = [], $protocol = false)
+    public function instantiate(array $data = [], $protocol = false): JSONObject
     {
         $this->resource = new JSONObject($data, $this);
 
         return $this->resource;
     }
 
-    /*
-     * Submit request to API to store an object.
-     *
-     * @return JSONObject
-     */
-    public function create(array $data)
+    public function create(array $data): JSONObject
     {
         $data['data']['CHECKSUM'] = md5(implode('', $data['data']).config('paygate.secret'));
 

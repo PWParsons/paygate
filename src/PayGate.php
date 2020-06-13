@@ -2,53 +2,24 @@
 
 namespace PWParsons\PayGate;
 
+use Illuminate\View\View;
+use PWParsons\PayGate\Foundation\Objects\JSONObject;
 use PWParsons\PayGate\Foundation\Protocol\InitiateProtocol;
 use PWParsons\PayGate\Foundation\Protocol\QueryProtocol;
 use PWParsons\PayGate\Foundation\Protocol\RedirectProtocol;
 
 class PayGate
 {
-    /*
-     * The config container.
-     *
-     * @var Config
-     */
-    public $config;
+    public array $config;
 
-    /*
-     * The base URL for API calls.
-     *
-     * @var JSONObject
-     */
-    public $baseUrl = 'https://secure.paygate.co.za/payweb3';
+    public string $baseUrl = 'https://secure.paygate.co.za/payweb3';
 
-    /*
-     * The initiate protocol container.
-     *
-     * @var InitiateProtocol
-     */
-    private $initiate;
+    private InitiateProtocol $initiate;
 
-    /*
-     * The redirect protocol container.
-     *
-     * @var RedirectProtocol
-     */
-    private $redirect;
+    private RedirectProtocol $redirect;
 
-    /*
-     * The query protocol container.
-     *
-     * @var QueryProtocol
-     */
-    private $query;
+    private QueryProtocol $query;
 
-    /*
-     * Basically a bootstrapper for the API class, ensures config integrity and
-     * throws an exception if there are issues with the config.
-     *
-     * @return void
-     */
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -59,14 +30,7 @@ class PayGate
         $this->query = new QueryProtocol($this);
     }
 
-    /*
-     * Validates the required configuration settings.
-     *
-     * @return null
-     *
-     * @throws Exception If the configuration file is missing required values.
-     */
-    private function validateConfig()
+    private function validateConfig(): void
     {
         foreach ($this->config as $key => $value) {
             if ($key == 'id' || $key == 'secret' || $key == 'return_url') {
@@ -77,32 +41,17 @@ class PayGate
         }
     }
 
-    /*
-     * Returns the initiate json object.
-     *
-     * @return JSONObject
-     */
-    public function initiate()
+    public function initiate(): JSONObject
     {
         return $this->initiate->instantiate();
     }
 
-    /*
-     * Returns the view that redirects to PayGate.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function redirect()
+    public function redirect(): View
     {
         return $this->redirect->toPayGate();
     }
 
-    /*
-     * Returns the query json object.
-     *
-     * @return JSONObject
-     */
-    public function query()
+    public function query(): JSONObject
     {
         return $this->query->instantiate();
     }

@@ -4,7 +4,5 @@
 </form>
 
 <script>
-    window.onload = function(){
-        document.forms['paygate-form'].submit();
-    }
+    window.onload = () => document.forms['paygate-form'].submit();
 </script>

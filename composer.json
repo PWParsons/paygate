@@ -14,19 +14,25 @@
         }
     ],
     "require": {
-        "illuminate/support": ">=5.6",
+        "php": "^7.4",
         "guzzlehttp/guzzle": "^6.3",
         "ext-bcmath": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
+        "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^9.0",
         "psalm/plugin-laravel": "^1.2",
         "vimeo/psalm": "^3.11"
     },
     "autoload": {
         "psr-4": {
-            "PWParsons\\PayGate\\": "src/"
+            "PWParsons\\PayGate\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PWParsons\\PayGate\\": "tests"
         }
     },
     "scripts": {
@@ -38,16 +44,16 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
                 "PWParsons\\PayGate\\PayGateServiceProvider"
             ],
             "aliases": {
-                "PayGate": "PWParsons\\PayGate\\Facades\\PayGate"
+                "PayGate": "PWParsons\\PayGate\\PayGateFacade"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

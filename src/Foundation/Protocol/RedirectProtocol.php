@@ -21,9 +21,9 @@ class RedirectProtocol extends BaseProtocol
         $this->validateSession();
 
         $paygate = [
-            'url'           => $this->api->baseUrl.$this->endpoint,
-            'request_id'    => session('PAYGATE.PAY_REQUEST_ID'),
-            'checksum'      => session('PAYGATE.CHECKSUM'),
+            'url' => $this->api->baseUrl.$this->endpoint,
+            'request_id' => session('PAYGATE.PAY_REQUEST_ID'),
+            'checksum' => session('PAYGATE.CHECKSUM'),
         ];
 
         session()->forget('PAYGATE');

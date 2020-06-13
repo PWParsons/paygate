@@ -20,9 +20,9 @@ class QueryProtocol extends BaseProtocol
     {
         return parent::instantiate([
             'data' => [
-                'PAYGATE_ID'        => config('paygate.id'),
-                'PAY_REQUEST_ID'    => '',
-                'REFERENCE'         => '',
+                'PAYGATE_ID' => config('paygate.id'),
+                'PAY_REQUEST_ID' => '',
+                'REFERENCE' => '',
             ],
         ], $this);
     }

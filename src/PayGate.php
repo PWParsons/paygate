@@ -2,8 +2,8 @@
 
 namespace PWParsons\PayGate;
 
-use PWParsons\PayGate\Foundation\Protocol\QueryProtocol;
 use PWParsons\PayGate\Foundation\Protocol\InitiateProtocol;
+use PWParsons\PayGate\Foundation\Protocol\QueryProtocol;
 use PWParsons\PayGate\Foundation\Protocol\RedirectProtocol;
 
 class PayGate

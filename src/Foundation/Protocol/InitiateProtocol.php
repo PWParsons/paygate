@@ -25,11 +25,11 @@ class InitiateProtocol extends BaseProtocol
                 'AMOUNT'            => '',
                 'CURRENCY'          => config('paygate.currency'),
                 'RETURN_URL'        => config('paygate.return_url'),
-                'NOTIFY_URL'        => config('paygate.notify_url'),
                 'TRANSACTION_DATE'  => now()->format('Y-m-d H:i:s'),
                 'LOCALE'            => config('paygate.locale'),
                 'COUNTRY'           => config('paygate.country'),
                 'EMAIL'             => '',
+                'NOTIFY_URL'        => config('paygate.notify_url'),
             ],
         ], $this);
     }

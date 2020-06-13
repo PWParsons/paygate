@@ -25,4 +25,9 @@ class PayGateServiceProvider extends ServiceProvider
             return new PayGate($app->config->get('paygate'));
         });
     }
+
+    public function provides(): array
+    {
+        return ['paygate'];
+    }
 }
